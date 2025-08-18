@@ -15,9 +15,9 @@ module tb;
   logic miso;
   logic sys_clk = 0;
   logic rstn;
+  logic [7:0] leds;
 
   // internals
-  int i;
   logic rwb;
   logic [5:0] addr;
   logic [11:0] data; 
@@ -32,7 +32,8 @@ module tb;
     .miso   (miso   ),
 
     .sys_clk(sys_clk),
-    .rstn   (rstn   )
+    .rstn   (rstn   ),
+    .leds   (leds   )
   );
 
   // main block

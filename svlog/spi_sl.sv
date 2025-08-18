@@ -5,8 +5,11 @@
  * @author : Gabriel Villanova N. M.
  */
 
+// `define SPI_DEBUG_IF_ENABLE
+
 module spi_sl #(
-  parameter SPI_TRANSF_SIZE = 32
+  parameter SPI_TRANSF_SIZE = 32,
+  parameter SPI_NUM_OF_REGS = 16
 )(
   // spi interface
   input  logic sclk,
@@ -19,19 +22,23 @@ module spi_sl #(
   input  logic rstn,
 
   // system in/outs
-  output logic [7:0] leds,
+  output logic [7:0] leds
+
+  // debug
+`ifdef SPI_DEBUG_IF_ENABLE
   output logic frame_done_sclk_dbg,
-  output logic [31:0] cmd_word_dbg,
-  output logic [31:0] cmd_word_sync_dbg
+  output logic [SPI_TRANSF_SIZE-1:0] cmd_word_dbg,
+  output logic [SPI_TRANSF_SIZE-1:0] cmd_word_sync_dbg
+`endif
 );
 
 // mosi signals
 logic [SPI_TRANSF_SIZE-1:0] cmd_word; // format {4'b, 12'bDATA, 2'b0, 6'bADDR,	7'b0, RWb}
-logic  [5:0] bitcnt;
+logic [$clog2(SPI_TRANSF_SIZE)+1:0] bitcnt;
 
 // miso signals
 logic [SPI_TRANSF_SIZE-1:0] dout_miso;
-logic [4:0]  bitcnt_miso;
+logic [$clog2(SPI_TRANSF_SIZE)-1:0] bitcnt_miso;
 
 // syncronizer signals (from SCK domain to system domain)
 logic sync1;
@@ -39,7 +46,7 @@ logic valid_sync;
 logic [SPI_TRANSF_SIZE-1:0] cmd_word_sync;
 
 // register bank signals
-logic [11:0] REGS[63];
+logic [11:0] REGS[SPI_NUM_OF_REGS];
 logic [11:0] data_out;
 logic rwb;
 logic [5:0] addr;
@@ -47,20 +54,19 @@ logic [11:0] data_in;
 
 // MOSI
 (* ASYNC_REG="TRUE" *) logic frame_done_sclk;
-assign frame_done_sclk_dbg = frame_done_sclk;
 
 always_ff @(posedge sclk or posedge cs_n) begin
   if(cs_n) begin
-    bitcnt   <= 0;
+    bitcnt          <= 0;
     frame_done_sclk <= 0;
   end else begin
-    bitcnt <= bitcnt + 1'b1;
-    cmd_word <= {mosi, cmd_word[31:1]};
-    frame_done_sclk <= (bitcnt == 31);
+    bitcnt          <= bitcnt + 1'b1;
+    cmd_word        <= {mosi, cmd_word[SPI_TRANSF_SIZE-1:1]};
+    frame_done_sclk <= (bitcnt == SPI_TRANSF_SIZE-1);
   end
 end
 
-// MISO (not necessary synchronizers - the data is read always after a "load frame")
+// MISO (not necessary synchronizers - the valid data is read always after a "load frame")
 assign dout_miso = {20'b0, data_out};
 
 always_ff @(posedge sclk or posedge cs_n) begin
@@ -114,7 +120,10 @@ always_ff @(posedge sys_clk) begin
   end
 end
 
-assign cmd_word_dbg      = cmd_word;
-assign cmd_word_sync_dbg = cmd_word_sync;
+`ifdef SPI_DEBUG_IF_ENABLE
+  assign frame_done_sclk_dbg = frame_done_sclk;
+  assign cmd_word_dbg        = cmd_word;
+  assign cmd_word_sync_dbg   = cmd_word_sync;
+`endif
 
 endmodule
