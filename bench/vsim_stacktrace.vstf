@@ -1,0 +1,97 @@
+# Current time Mon Aug 18 23:01:55 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x3fcf8f45: 'pthread_mutex_lock + 0x00000015' in '/lib/i386-linux-gnu/libc.so.6'
+# 1    0x0816ebd2: '<unknown (@0x816ebd2)>'
+# 2    0x0816ecc1: '<unknown (@0x816ecc1)>'
+# 3    0x3fcf5bfc: '<unknown (@0x3fcf5bfc)>'
+# End of Stack Trace
+
+
+# Current time Mon Aug 18 23:05:21 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x3fcf8f45: 'pthread_mutex_lock + 0x00000015' in '/lib/i386-linux-gnu/libc.so.6'
+# 1    0x0816ebd2: '<unknown (@0x816ebd2)>'
+# 2    0x0816ecc1: '<unknown (@0x816ecc1)>'
+# 3    0x3fcf5bfc: '<unknown (@0x3fcf5bfc)>'
+# End of Stack Trace
+
+
+# Current time Mon Aug 18 23:06:16 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x3fcf8f45: 'pthread_mutex_lock + 0x00000015' in '/lib/i386-linux-gnu/libc.so.6'
+# 1    0x0816ebd2: '<unknown (@0x816ebd2)>'
+# 2    0x0816ecc1: '<unknown (@0x816ecc1)>'
+# 3    0x3fcf5bfc: '<unknown (@0x3fcf5bfc)>'
+# End of Stack Trace
+
+
+# Current time Mon Aug 18 23:08:16 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x3fcf8f45: 'pthread_mutex_lock + 0x00000015' in '/lib/i386-linux-gnu/libc.so.6'
+# 1    0x0816ebd2: '<unknown (@0x816ebd2)>'
+# 2    0x0816ecc1: '<unknown (@0x816ecc1)>'
+# 3    0x3fcf5bfc: '<unknown (@0x3fcf5bfc)>'
+# End of Stack Trace
+
+
+# Current time Mon Aug 18 23:16:42 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x3fcf8f45: 'pthread_mutex_lock + 0x00000015' in '/lib/i386-linux-gnu/libc.so.6'
+# 1    0x0816ebd2: '<unknown (@0x816ebd2)>'
+# 2    0x0816ecc1: '<unknown (@0x816ecc1)>'
+# 3    0x3fcf5bfc: '<unknown (@0x3fcf5bfc)>'
+# End of Stack Trace
+
+
+# Current time Mon Aug 18 23:19:44 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x3fcf8f45: 'pthread_mutex_lock + 0x00000015' in '/lib/i386-linux-gnu/libc.so.6'
+# 1    0x0816ebd2: '<unknown (@0x816ebd2)>'
+# 2    0x0816ecc1: '<unknown (@0x816ecc1)>'
+# 3    0x3fcf5bfc: '<unknown (@0x3fcf5bfc)>'
+# End of Stack Trace
+
+
+# Current time Mon Aug 18 23:24:52 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "

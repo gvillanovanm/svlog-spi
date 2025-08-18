@@ -1,5 +1,5 @@
 /**
- * testbench template
+ * testbench SPI
  *
  * @version: 0.1
  * @author : Gabriel Villanova N. M.
@@ -14,14 +14,13 @@ module tb;
   logic mosi;
   logic miso;
   logic sys_clk = 0;
-  logic rstn = 0;
+  logic rstn;
 
   // internals
   int i;
   logic rwb;
   logic [5:0] addr;
   logic [11:0] data; 
-  logic [31:0] cmd_word;
 
   always #(SYS_CLK_PERIOD/2) sys_clk=~sys_clk;
 
@@ -41,129 +40,54 @@ module tb;
     $dumpfile("dump.vcd");
     $dumpvars;
 
-    // codes here ...
+    // start
     $display("Starting simulation...");
 
     // nothing
-    #40us;
+    #40ns;
 
-    // reset
+    // init + reset deassert
     rstn = 1;
-    #30us;
+    #30ns;
+
+    // reset assert and "applied" in SPI
     rstn = 0;
-    // reset must be applied in SPI
     cs_n = 1'b1; 
     sclk = 0;
-    #50us;
-
-   // ---------------------------------------------------------------------------------
-   // ---------------------------------------------------------------------------------
-   // ---------------------------------------------------------------------------------
+    #50ns;
 
     // dessert reset
     rstn = 1;
-    #20us;
+    #20ns;
 
-    // send an item
-    data     = 12'h000; //ABC;
-    addr     = 6'd59; // 0 to 64
-    rwb      = 1'b1;
-    cmd_word = {4'b0000, data, 2'b00, addr, 7'b0000000, rwb}; // 00AB _00AB_0001
-    cs_n     = 0;
-    i        = 0;
-    repeat(32) begin
-      send_bit(cmd_word[i]);
-      i++;
-    end
-    cs_n = 1;
-    #150us;
-    
-    // send an item
-    data     = 12'h00C;
-    addr     = 6'd12; // 0 to 64
-    rwb      = 1'b0;
-    cmd_word = {4'b0000, data, 2'b00, addr, 7'b0000000, rwb};
-    cs_n     = 0;
-    i        = 0;
-    repeat(32) begin
-      send_bit(cmd_word[i]);
-      i++;
-    end
-    cs_n = 1;
-    #150us;
+    // write transaction
+    send_cmd(6'd12, 12'hABC, 0);
 
-   // ---------------------------------------------------------------------------------
-   // ---------------------------------------------------------------------------------
-   // ---------------------------------------------------------------------------------
+    // read
+    send_cmd(6'd12, 12'h???, 1); // load data[addr] on registers
+    send_cmd(6'd12, 12'h???, 1); // mosi transmit
 
-    // prepare read N
-    data     = 12'h000;
-    addr     = 6'd23; // 0 to 64
-    rwb      = 1'b1;
-    cmd_word = {4'b0000, data, 2'b00, addr, 7'b0000000, rwb};
-    cs_n     = 0;
-    i        = 0;
-    repeat(32) begin
-      send_bit(cmd_word[i]);
-      i++;
-    end
-    cs_n = 1;
-    #20us;
-
-    // read N
-    data     = 12'h000;
-    addr     = 6'd23; // 0 to 64
-    rwb      = 1'b1;
-    cmd_word = {4'b0000, data, 2'b00, addr, 7'b0000000, rwb};
-    cs_n     = 0;
-    i        = 0;
-    repeat(32) begin
-      send_bit(cmd_word[i]);
-      i++;
-    end
-    cs_n = 1;
-    #20us;
-
-   // ---------------------------------------------------------------------------------
-   // ---------------------------------------------------------------------------------
-   // ---------------------------------------------------------------------------------
-
-    // prepare read N
-    data     = 12'h000;
-    addr     = 6'd12; // 0 to 64
-    rwb      = 1'b1;
-    cmd_word = {4'b0000, data, 2'b00, addr, 7'b0000000, rwb};
-    cs_n     = 0;
-    i        = 0;
-    repeat(32) begin
-      send_bit(cmd_word[i]);
-      i++;
-    end
-    cs_n = 1;
-    #20us;
-
-
-    // prepare read N
-    data     = 12'h000;
-    addr     = 6'd12; // 0 to 64
-    rwb      = 1'b1;
-    cmd_word = {4'b0000, data, 2'b00, addr, 7'b0000000, rwb};
-    cs_n     = 0;
-    i        = 0;
-    repeat(32) begin
-      send_bit(cmd_word[i]);
-      i++;
-    end
-    cs_n = 1;
-    #20us;
-
-    // continue...
-
+    // end
     #100ns;
     $finish();
   end
   
-  // 25MHz
+  // send word
+  task automatic send_cmd(logic [5:0] addr, logic [11:0] data, logic rwb);
+    int i = 0;
+    logic [31:0] cmd_word;
+
+    #100ns;
+    cmd_word = {4'b0000, data, 2'b00, addr, 7'b0000000, rwb};
+    cs_n     = 0;
+    repeat(32) begin
+      send_bit(cmd_word[i]);
+      i++;
+    end
+    cs_n = 1;
+  endtask
+
+  // send bit
   task automatic send_bit(bit input_bit);
     mosi = input_bit;
     sclk = 0;
