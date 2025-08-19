@@ -3,6 +3,10 @@
 A small **SPI slave** implementation in SystemVerilog, tested on **ZCU106** using Xilinx **AXI Quad SPI** (v3.2) with the Zynq PS.  
 Includes RTL, a ModelSim/Questa testbench (works on the free edition), FPGA helper scripts, and waveform screenshots.
 
+## Architecture
+
+<img width="1308" height="468" alt="image" src="https://github.com/user-attachments/assets/fcaddbbb-cbc9-4b6f-b2e2-f5baa21e1f30" />
+
 ---
 
 ## TL;DR
