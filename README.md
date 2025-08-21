@@ -133,6 +133,14 @@ Artifacts:
 
 > I also drop an ILA for debugging — highly recommended to enjoy the waveforms. 😊
 
+### Diagram
+
+<img width="1147" height="456" alt="image" src="https://github.com/user-attachments/assets/bfdcdf8c-2190-47cf-99c7-58b1dcf418b6" />
+
+### Waveforms
+
+**TODO**
+
 ---
 
 ## Parameters
