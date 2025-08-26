@@ -142,9 +142,16 @@ Artifacts:
 <img width="1898" height="425" alt="Screenshot from 2025-08-26 09-15-20" src="https://github.com/user-attachments/assets/756b9de4-69da-43c3-8e26-a9ae580e3737" />
 
 
-### Waveforms
+### Waveforms (dbg version)
 
-**TODO**
+#### Write (w=123 in addr=2)
+
+<img width="1600" height="1286" alt="Screenshot from 2025-08-26 09-47-14" src="https://github.com/user-attachments/assets/fcc113ee-1c63-4d49-88bc-fcecab5e2aec" />
+<img width="642" height="73" alt="Screenshot from 2025-08-26 09-46-30" src="https://github.com/user-attachments/assets/1f181218-7cdb-478b-9c20-b6aa93bc77c5" />
+
+#### Read (read addr=2 / result: 291 = 0x123)
+
+<img width="2272" height="829" alt="Screenshot from 2025-08-26 09-48-59" src="https://github.com/user-attachments/assets/1c40162b-e090-48d8-b952-4c42a074051d" />
 
 ---
 
