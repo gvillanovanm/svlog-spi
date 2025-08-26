@@ -133,9 +133,14 @@ Artifacts:
 
 > I also drop an ILA for debugging — highly recommended to enjoy the waveforms. 😊
 
-### Diagram
+### Diagram (no dbg)
 
 <img width="1147" height="456" alt="image" src="https://github.com/user-attachments/assets/bfdcdf8c-2190-47cf-99c7-58b1dcf418b6" />
+
+### Diagram (dbg)
+
+<img width="1898" height="425" alt="Screenshot from 2025-08-26 09-15-20" src="https://github.com/user-attachments/assets/756b9de4-69da-43c3-8e26-a9ae580e3737" />
+
 
 ### Waveforms
 
